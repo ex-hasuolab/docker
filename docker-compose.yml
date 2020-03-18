@@ -1,0 +1,20 @@
+version: '3'
+services:
+    tensorflow:
+        container_name: tensorflow-gpu
+        build: .
+        image: tensorflow/tensorflow:latest-gpu-py3-jupyter
+        volumes:
+            - /home/take_pbfzbf302/data:/data
+            - /home/tak-o:/home/tak-o
+            - /home/chopprin:/home/chopprin
+        working_dir: /home
+
+        # commandは実行時のコマンドを指定．
+        # bash -c " && "を使う事によって複数コマンド実行出来る．
+        command: >
+            bash -c "echo Using compose-file made on 2020/03/14
+            && jupyter notebook --port=8888 --ip=0.0.0.0 --allow-root
+            && jupyter notebook list"
+        ports:
+            - 8888:8888
